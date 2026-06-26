@@ -2,8 +2,7 @@ from hunterclassic import HunterClient
 
 client = HunterClient()
 
-response = client.session.get("/v1/Application/discounts")
+player = client.users.get_by_hostname("HunterLagger")
 
-print(response.status_code)
-print(response.headers["Content-Type"])
-print(response.text[:500])
+print(type(player))
+print(player.keys())
