@@ -1,4 +1,5 @@
 from hunterclassic.models.user import User
+from hunterclassic.models.expedition_list import ExpeditionList
 from .base import BaseResource
 
 
@@ -7,7 +8,7 @@ class ExpeditionsResource(BaseResource):
     def list(self, user: User | int, offset: int = 0, limit: int = 40,):
         user_id = user.id if isinstance(user, User) else user
 
-        return self.post(
+        data = self.post(
             "/v1/Expedition/list",
             {
                 "user_id": user_id,
@@ -15,6 +16,8 @@ class ExpeditionsResource(BaseResource):
                 "limit": limit,
             },
         )
+
+        return ExpeditionList.model_validate(data)
         
     def get(self, user: User | int, expedition_id: int):
         user_id = user.id if isinstance(user, User) else user

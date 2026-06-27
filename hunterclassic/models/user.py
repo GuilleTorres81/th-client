@@ -1,7 +1,7 @@
-from pydantic import BaseModel
+from .base import HunterModel
 
 
-class User(BaseModel):
+class User(HunterModel):
     id: int
     hostname: str
     handle: str

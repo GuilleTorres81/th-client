@@ -6,11 +6,10 @@ player = client.users.get_by_hostname("HunterLagger")
 
 history = client.expeditions.list(player)
 
-first = history["expeditions"][0]
+print(type(history))
+print(type(history.expeditions[0]))
 
-hunt = client.expeditions.get(
-    player,
-    first["id"],
-)
-
-print(hunt)
+print(history.total)
+print(history.expeditions[0].id)
+print(history.expeditions[0].kills)
+print(history.expeditions[0].singleplayer)
