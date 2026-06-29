@@ -6,7 +6,13 @@ client = HunterClient()
 
 player = client.users.get_by_hostname("HunterLagger")
 
-skills = client.users.get_skills(player)
+history = client.expeditions.list(player)
 
-print(type(skills))
-pprint(skills)
+expedition = history.expeditions[0]
+
+detail = client.expeditions.get(
+    player,
+    expedition.id,
+)
+
+pprint(detail)
