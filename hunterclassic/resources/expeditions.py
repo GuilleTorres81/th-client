@@ -6,7 +6,7 @@ from .base import BaseResource
 class ExpeditionsResource(BaseResource):
 
     def list(self, user: User | int, offset: int = 0, limit: int = 40,):
-        user_id = user.id if isinstance(user, User) else user
+        user_id = self._user_id(user)
 
         data = self.post(
             "/v1/Expedition/list",
@@ -20,7 +20,7 @@ class ExpeditionsResource(BaseResource):
         return ExpeditionList.model_validate(data)
         
     def get(self, user: User | int, expedition_id: int):
-        user_id = user.id if isinstance(user, User) else user
+        user_id = self._user_id(user)
 
         return self.post(
             "/v1/Public_user/expedition",
